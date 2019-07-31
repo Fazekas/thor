@@ -3,9 +3,11 @@ package com.mythology.thor.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.UUID;
 
 @Entity
+@Table(name = "role")
 public class RoleEntity {
 
     @Id

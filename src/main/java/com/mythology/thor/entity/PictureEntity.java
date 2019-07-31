@@ -3,10 +3,12 @@ package com.mythology.thor.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
+@Table(name = "picture")
 public class PictureEntity {
     @Id
     @GeneratedValue
@@ -15,11 +17,11 @@ public class PictureEntity {
 
     private String pictureURL;
 
-    private Set<String> comments;
+//    private Set<String> comments;
 
-    private int like;
+    private Integer like;
 
-    private int dislike;
+    private Integer dislike;
 
     public UUID getId() {
         return id;
@@ -36,14 +38,14 @@ public class PictureEntity {
     public void setPictureURL(String pictureURL) {
         this.pictureURL = pictureURL;
     }
-
-    public Set<String> getComments() {
-        return comments;
-    }
-
-    public void setComments(Set<String> comments) {
-        this.comments = comments;
-    }
+//
+//    public Set<String> getComments() {
+//        return comments;
+//    }
+//
+//    public void setComments(Set<String> comments) {
+//        this.comments = comments;
+//    }
 
     public int getLike() {
         return like;

@@ -1,27 +1,17 @@
 package com.mythology.thor.entity;
 
-import com.mythology.thor.model.Picture;
-import com.mythology.thor.model.Role;
-import com.mythology.thor.model.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.util.List;
+
 import java.util.Set;
 import java.util.UUID;
 
 @Entity
+@Table(name = "user")
 public class UserEntity {
 
     @Id
@@ -38,6 +28,7 @@ public class UserEntity {
 
     @NotEmpty
     @Length(min=5)
+    @JsonIgnore
     private String password;
 
     @ManyToMany
