@@ -7,6 +7,7 @@ import com.mythology.thor.model.User;
 import com.mythology.thor.repository.RoleRepository;
 import com.mythology.thor.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,6 +27,9 @@ public class UserService {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
         List<UserEntity> allUsers = this.userRepo.findAll();
@@ -37,16 +41,18 @@ public class UserService {
 
     public User registerUser(User user) {
         //change from user to user entity
-        UserEntity u = this.userMapper.modelToEntity(user);
+        UserEntity userEntity = this.userMapper.modelToEntity(user);
+        userEntity.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userEntity.setActive(true);
 
         // need to get the role to set the users role
         RoleEntity adminRole = this.roleRepository.findByRole("ADMIN");
 
         // set the users role
-        u.setRole(new HashSet<>(Arrays.asList(adminRole)));
+        userEntity.setRole(new HashSet<>(Arrays.asList(adminRole)));
 
         // save our new user
-        UserEntity savedEntity = this.userRepo.save(u);
+        UserEntity savedEntity = this.userRepo.save(userEntity);
 
 
         // make response data of the newly saved user

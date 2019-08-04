@@ -2,17 +2,26 @@ package com.mythology.thor.model;
 
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 public class User {
-    private UUID id;
+    private Integer id;
     private String email;
     private String userName;
     private String password;
+    private Boolean active;
     private Set<Role> role;
     private List<Picture> pictures;
     private Set<User> followers;
     private Set<User> following;
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getEmail() {
         return email;
@@ -36,6 +45,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public Set<Role> getRole() {

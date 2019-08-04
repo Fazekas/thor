@@ -1,14 +1,18 @@
 package com.mythology.thor.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "user")
@@ -17,7 +21,7 @@ public class UserEntity {
     @Id
     @GeneratedValue
     @Column(name = "user_id")
-    private UUID id;
+    private Integer id;
 
     @Email
     @NotEmpty
@@ -28,8 +32,9 @@ public class UserEntity {
 
     @NotEmpty
     @Length(min=5)
-    @JsonIgnore
     private String password;
+
+    private Boolean active;
 
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -45,11 +50,11 @@ public class UserEntity {
 //    @OneToMany(mappedBy = "")
 //    private Set<UserEntity> following;
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -75,6 +80,14 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public Set<RoleEntity> getRole() {

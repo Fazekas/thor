@@ -1,6 +1,5 @@
 package com.mythology.thor.mappers;
 
-import com.mythology.thor.entity.RoleEntity;
 import com.mythology.thor.entity.UserEntity;
 import com.mythology.thor.model.Role;
 import com.mythology.thor.model.User;
@@ -23,14 +22,8 @@ public class UserMapper {
         entity.setUserName(user.getUserName());
         entity.setEmail(user.getEmail());
         entity.setPassword(user.getPassword());
-
-        Set<RoleEntity> roles = new HashSet<>();
-        user.getRole().forEach(role -> {
-            RoleEntity roleEntity = roleMapper.modelToEntity(role);
-            roles.add(roleEntity);
-        });
-
-        entity.setRole(roles);
+        entity.setActive(user.getActive());
+        entity.setId(user.getId());
 
         return entity;
     }
@@ -43,7 +36,9 @@ public class UserMapper {
         User userModel = new User();
         userModel.setUserName(userEntity.getUserName());
         userModel.setEmail(userEntity.getEmail());
-        userModel.setPassword(userEntity.getPassword());
+//        userModel.setPassword(userEntity.getPassword());
+        userModel.setActive(userEntity.getActive());
+        userModel.setId(userEntity.getId());
 
         Set<Role> roles = new HashSet<>();
         userEntity.getRole().forEach(r -> {

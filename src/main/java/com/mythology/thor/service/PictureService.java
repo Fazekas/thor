@@ -1,9 +1,9 @@
 package com.mythology.thor.service;
 
 import com.mythology.thor.entity.PictureEntity;
+import com.mythology.thor.mappers.PictureMapper;
 import com.mythology.thor.model.Picture;
 import com.mythology.thor.repository.PictureRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class PictureService {
     @Autowired
-    private ModelMapper modelMapper;
+    private PictureMapper pictureMapper;
 
     @Autowired
     private PictureRepository pictureRepo;
@@ -22,9 +22,8 @@ public class PictureService {
         List<Picture> pictures = new ArrayList<>();
         List<PictureEntity> pictureEnt = this.pictureRepo.findAll();
 
-        pictureEnt.forEach(pic -> pictures.add(modelMapper.map(pic, Picture.class)));
+        pictureEnt.forEach(pic -> pictures.add(pictureMapper.entityToModel(pic)));
 
         return  pictures;
     }
-
 }

@@ -4,30 +4,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "picture")
 public class PictureEntity {
     @Id
     @GeneratedValue
-    private UUID id;
+    private Integer id;
 
 
     private String pictureURL;
 
-//    private Set<String> comments;
+//    @ElementCollection
+//    private List<String> comments;
 
     private Integer like;
 
     private Integer dislike;
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -38,12 +37,12 @@ public class PictureEntity {
     public void setPictureURL(String pictureURL) {
         this.pictureURL = pictureURL;
     }
-//
-//    public Set<String> getComments() {
+
+//    public List<String> getComments() {
 //        return comments;
 //    }
 //
-//    public void setComments(Set<String> comments) {
+//    public void setComments(List<String> comments) {
 //        this.comments = comments;
 //    }
 

@@ -1,20 +1,19 @@
 package com.mythology.thor.model;
 
-import java.util.Set;
-import java.util.UUID;
+import java.util.List;
 
 public class Picture {
-    private UUID id;
+    private Integer id;
     private String pictureURL;
-    private Set<String> comments;
+    private List<String> comments;
     private int like;
     private int dislike;
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -26,11 +25,11 @@ public class Picture {
         this.pictureURL = pictureURL;
     }
 
-    public Set<String> getComments() {
+    public List<String> getComments() {
         return comments;
     }
 
-    public void setComments(Set<String> comments) {
+    public void setComments(List<String> comments) {
         this.comments = comments;
     }
 

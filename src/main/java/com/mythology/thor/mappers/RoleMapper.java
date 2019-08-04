@@ -9,12 +9,14 @@ public class RoleMapper {
     public RoleEntity modelToEntity(Role role) {
         RoleEntity roleEntity = new RoleEntity();
         roleEntity.setRole(role.getRole());
+        roleEntity.setId(role.getId());
         return roleEntity;
     }
 
     public Role entityToModel(RoleEntity roleEntity){
         Role role = new Role();
         role.setRole(roleEntity.getRole());
+        role.setId(roleEntity.getId());
         return role;
     }
 }

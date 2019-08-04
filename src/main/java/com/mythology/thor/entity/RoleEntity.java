@@ -1,10 +1,10 @@
 package com.mythology.thor.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.UUID;
 
 @Entity
 @Table(name = "role")
@@ -12,15 +12,16 @@ public class RoleEntity {
 
     @Id
     @GeneratedValue
-    private UUID id;
+    @Column(name = "role_id")
+    private Integer id;
 
     private String role;
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
