@@ -39,6 +39,7 @@ public class UserService {
         return users;
     }
 
+    // TODO re-name this
     public User registerUser(User user) {
         //change from user to user entity
         UserEntity userEntity = this.userMapper.modelToEntity(user);

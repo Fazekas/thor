@@ -19,7 +19,10 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @GetMapping
+    public void login() {
 
+    }
 
     // POST Mapping
     @PostMapping
@@ -28,7 +31,7 @@ public class UserController {
     }
 
     // GET Mapping
-    @GetMapping
+    @GetMapping(path = "/users")
     public List<User> findAllUsers(){
         return userService.findAll();
     }
