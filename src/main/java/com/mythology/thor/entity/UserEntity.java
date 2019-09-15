@@ -34,7 +34,7 @@ public class UserEntity {
     @Length(min=5)
     private String password;
 
-    private Boolean active;
+    private Boolean active = true;
 
     @ManyToMany
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
