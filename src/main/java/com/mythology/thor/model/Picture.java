@@ -8,6 +8,7 @@ public class Picture {
     private List<String> comments;
     private int like;
     private int dislike;
+    private User userId;
 
     public Integer getId() {
         return id;
@@ -47,5 +48,13 @@ public class Picture {
 
     public void setDislike(int dislike) {
         this.dislike = dislike;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 }

@@ -1,12 +1,15 @@
 package com.mythology.thor.mappers;
 
 import com.mythology.thor.entity.UserEntity;
+import com.mythology.thor.model.Picture;
 import com.mythology.thor.model.Role;
 import com.mythology.thor.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -16,6 +19,9 @@ public class UserMapper {
     @Autowired
     private RoleMapper roleMapper;
 
+    @Autowired
+    private PictureMapper pictureMapper;
+
 
     public UserEntity modelToEntity (User user) {
         UserEntity entity = new UserEntity();
@@ -23,7 +29,6 @@ public class UserMapper {
         entity.setEmail(user.getEmail());
         entity.setPassword(user.getPassword());
         entity.setActive(user.getActive());
-        entity.setId(user.getId());
 
         return entity;
     }
@@ -46,8 +51,15 @@ public class UserMapper {
             roles.add(roleModel);
         });
 
-        userModel.setRole(roles);
-        return userModel;
+        List<Picture> pictures = new ArrayList();
+        userEntity.getPictureEntities().forEach(pictureEntity -> {
+            Picture pictureModel = pictureMapper.entityToModel(pictureEntity);
+            pictures.add(pictureModel);
+        });
 
+        userModel.setRole(roles);
+        userModel.setPictures(pictures);
+
+        return userModel;
     }
 }

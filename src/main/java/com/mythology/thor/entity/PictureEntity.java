@@ -3,7 +3,10 @@ package com.mythology.thor.entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "picture")
@@ -12,15 +15,18 @@ public class PictureEntity {
     @GeneratedValue
     private Integer id;
 
-
     private String pictureURL;
 
-//    @ElementCollection
+   // @ElementCollection
 //    private List<String> comments;
 
     private Integer like;
 
     private Integer dislike;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity userId;
 
     public Integer getId() {
         return id;
@@ -37,7 +43,7 @@ public class PictureEntity {
     public void setPictureURL(String pictureURL) {
         this.pictureURL = pictureURL;
     }
-
+//
 //    public List<String> getComments() {
 //        return comments;
 //    }
@@ -60,5 +66,13 @@ public class PictureEntity {
 
     public void setDislike(int dislike) {
         this.dislike = dislike;
+    }
+
+    public UserEntity getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UserEntity userId) {
+        this.userId = userId;
     }
 }

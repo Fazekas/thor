@@ -9,9 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -40,9 +42,9 @@ public class UserEntity {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleEntity> role;
 
-//    @OneToMany
-//    private List<PictureEntity> pictures;
-//
+    @OneToMany(mappedBy = "userId")
+    private List<PictureEntity> pictureEntities;
+
 //    @ManyToMany
 //    @JoinColumn(name = "user_id")
 //    private Set<UserEntity> followers;
@@ -96,6 +98,14 @@ public class UserEntity {
 
     public void setRole(Set<RoleEntity> role) {
         this.role = role;
+    }
+
+    public List<PictureEntity> getPictureEntities() {
+        return pictureEntities;
+    }
+
+    public void setPictureEntities(List<PictureEntity> pictureEntities) {
+        this.pictureEntities = pictureEntities;
     }
 //
 //    public List<Picture> getPictures() {
